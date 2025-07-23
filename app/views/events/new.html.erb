@@ -1,0 +1,14 @@
+<%= link_to "<-- Back", events_path %><br><br>
+
+<%= form_with(model: @event, url:events_path, method: "post") do |form| %>
+    <%= form.label :name, "Name: " %>
+    <%= form.text_field :name %><br>
+
+    <%= form.label :date, "Date: " %>
+    <%= form.date_field :date %><br>
+
+    <%= form.label :location, "Location: " %>
+    <%= form.text_field :location %><br><br>
+
+    <%= form.submit "Submit" %>
+<% end %>

@@ -1,0 +1,18 @@
+<%= link_to "<-- Back", index_event_path %><br><br>
+
+<h1>Event: <%= @event.title %></h1>
+Date: <%= @event.date %><br>
+Location: <%= @event.location %>
+
+<% unless current_user.attended_events.include?(@event) %>
+  <%= button_to "Attend Event", event_attendances_path(@event), method: :post %>
+<% else %>
+  <%= button_to "Cancel Attendance", event_attendance_path(@event, current_user.attendances.find_by(attended_event: @event)), method: :delete %>
+<% end %>
+
+<h2>Attendees</h2>
+<ul>
+  <% @event.attendees.each do |attendee| %>
+    <li><%= link_to attendee.name, user_path(attendee) %></li>
+  <% end %>
+</ul>
